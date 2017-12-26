@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: admin
+  datasource:
+    url: jdbc:mysql://172.16.62.165:3306/sec_test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+          max-active: 20
+          initial-size: 10
+          min-idle: 3
+          max-wait: 60000
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          validationQuery: SELECT 1 FROM DUAL
+  thymeleaf:
+    cache: false
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: utf-8
+    content-type: text/html
+    check-template-location: true
+    prefix: classpath:/templates/
+
+
+
+
+debug: true
+
+# Logging configuration
+logging:
+  level:
+    org.springframework:
+      data: DEBUG
+      security: DEBUG
+
+# JWT
+jwt:
+  header: Authorization
+  secret: 12345678
+  expiration: 604800
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
